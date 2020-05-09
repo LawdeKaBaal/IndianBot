@@ -1,21 +1,32 @@
-"""CoronaVirus LookUp
-Syntax: .corona <country>"""
-from covid import Covid
+# @pureindialover
+# Big Thanks To Spechide
+
+"""Corona: Avaible commands: .covid <cname>
+"""
+import datetime
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from uniborg.util import admin_cmd
 
-@borg.on(admin_cmd(pattern="corona (.*)"))
+@borg.on(admin_cmd(pattern="covid ?(.*)"))
 async def _(event):
-    covid = Covid()
-    data = covid.get_data()
-    country = event.pattern_match.group(1)
-    country_data = get_country_data(country, data)
-    output_text = "" 
-    for name, value in country_data.items():
-        output_text += "`{}`: `{}`\n".format(str(name), str(value))
-    await event.edit("**CoronaVirus Info in {}**:\n\n{}".format(country.capitalize(), output_text))
-
-def get_country_data(country, world):
-    for country_data in world:
-        if country_data["country"].lower() == country.lower():
-            return country_data
-    return {"Status": "No information yet about this country!"}
+    if event.fwd_from:
+        return 
+    input_str = event.pattern_match.group(1)
+    reply_message = await event.get_reply_message()
+    chat = "@NovelCoronaBot"
+    await event.edit("```Checking...```")
+    async with event.client.conversation(chat) as conv:
+          try:     
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1124136160))
+              await event.client.send_message(chat, "{}".format(input_str))
+              response = await response 
+          except YouBlockedUserError: 
+              await event.reply("```Abey Thaale (@NovelCoronaBot) Ko Unblock Kar```")
+              return
+          if response.text.startswith("Country"):
+             await event.edit("😐**Country Not Found**😐\n\n[👇👇👇👇👇👇👇👇👇\n 👉👉How to use 👈👈\n👆👆👆👆👆👆👆👆👆](https://t.me/pureindialover)")
+          else: 
+             await event.delete()
+             await event.client.send_message(event.chat_id, response.message)
