@@ -124,7 +124,7 @@ async def _(event):
 
             "`HACKED 100%\n█████████████████████████ `",
 
-            "`Targeted Google Account Hacked Successfully...`\n[{}](tg://user?id={})'s __account is under Boss' control now__\n\n**Pay 50$ To** @TechyNewbie **Or Get Ready To See Your E-Mail and YouTube Channel Spamming Everywhere.**".format(firstname, idd)
+            "`Targeted Google Account Hacked Successfully...`\n[{}](tg://user?id={})'s __account is under Boss' control now__\n\n**Pay 99$ To** @pureindialover **Or Get Ready To See Your E-Mail and YouTube Channel Spamming Everywhere.**".format(firstname, idd)
 
         ]
 
