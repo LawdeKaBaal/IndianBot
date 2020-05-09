@@ -2,7 +2,7 @@
 
 Available Commands:
 
-.hackgmail"""
+.gmailhack"""
 
 
 
@@ -26,7 +26,7 @@ import asyncio
 
 
 
-@borg.on(events.NewMessage(pattern=r"(.hackgmail)", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"(.gmailhack)", outgoing=True))
 
 
 
@@ -54,7 +54,7 @@ async def _(event):
 
 
 
-    if input_str == "hackgmail":
+    if input_str == "gmailhack":
 
         
 
